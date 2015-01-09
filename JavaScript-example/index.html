@@ -1,0 +1,59 @@
+<html>
+<head>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<style>
+		body 
+		{
+			padding-top: 70px;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<a class="navbar-brand" href="#">Teas</a>
+			<ul class="nav navbar-nav">
+				<li><a id="everything" href="#">Everything</a></li>
+				<li><a id="cart" href="#">Cart</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container">
+		<div id='outlet'></div>
+	</div>
+	<!-- itemTemplate goes here: <script id="itemTemplate" type="text/x-handlebars-template"></script> -->
+	 <script id="template" type="text/x-handlebars-template">
+		<div class="col-md-9 item"><div class="panel panel-default">
+		<div class="panel-heading">{{name}}</div>
+		<div class="panel-body">
+		  <div>Origin: {{origin}}</div>
+		  <div>Type: {{type}}</div>
+		  <div>Price: {{price}}</div>
+		  <div>Weight: {{weight}}</div>
+		  <div>Variety: {{variety}}</div>
+		  <div>Brand: {{brand}}</div>
+		  <div class="likeButton" data-item-id="{{id}}">
+			{{#if inCart}}
+				{{> removeButton}}
+			{{else}}
+				{{> addButton}}
+			{{/if}}
+		</div>
+		</div>
+	  </div>
+	  </div>
+	 </script>
+	 <script id="addButtonTemplate" type="text/x-handlebars-template">
+		<button type="button" class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Like</button>
+	</script>
+	<script id="removeButtonTemplate" type="text/x-handlebars-template">
+		<button type="button" class="btn btn-danger inCart"><i class="fa fa-thumbs-o-down"></i>&nbsp;Unlike</button>
+	</script>
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.2/handlebars.min.js"></script>
+	<script src="app.js"></script>
+
+</body>
+</html>
+
+
