@@ -1,40 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title><?php bloginfo("name"); ?></title>
-	<link rel="stylesheet" href="style.css">
-	
-	<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-</head>
-<body>
-	<header>
-    	<h1><a href="<?php bloginfo("url"); ?>">
-			<?php bloginfo("name"); ?>
-        </a></h1>
-        <h2><?php bloginfo("description"); ?></h2>
-        
-        <?php wp_nav_menu(array("menu" => "Marina's Menu")); ?>
-    </header>
-    
-    <?php if(have_posts()): while(have_posts()): the_post(); ?>
-        	<h2><?php the_title(); ?></h2>
-            <p><?php the_content(); ?></p>
-    <?php endwhile; else: ?>
-    	<p>Sorry you don't have posts :(</p>
-    <?php endif; ?>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
+<?php get_header(); ?>
+<div id="content">
+	<div id="posts">
+		<?php if(have_posts()): while(have_posts()): the_post(); ?>
+			<article class="blog-post">
+				<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+				 <p>Written on
+					<time datetime="<?php the_time('Y-m-d'); ?>">
+						<?php the_time('M j'); ?>
+					</time>
+					by <?php the_author(); ?>
+				 </p>
+				<?php the_post_thumbnail(); ?>
+				<?php the_content("Read More"); ?>
+				<?php comments_number("0 comments", "1 comment", "% comments"); ?>
+			</article>
+		<?php endwhile; else: ?>
+			<p>Sorry no posts</p>
+		<?php endif; ?>
+	</div>
+	<?php get_sidebar("left"); ?>
+</div>
+<?php get_footer(); ?>
